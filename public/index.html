@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mystic Brawl</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <link rel="apple-touch-icon" sizes="180x180" href="favicon_io/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon_io/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon_io/favicon-16x16.png">
+    <link rel="manifest" href="favicon_io/site.webmanifest">
+</head>
+<body>
+
+    <div id="login-overlay">
+        <img src="/logo.png" alt="Mystic Brawl" class="game-logo">
+        <div class="login-box">
+            <form id="login-form">
+                <input type="text" 
+                       id="player-name" 
+                       placeholder="Enter your name" 
+                       autocomplete="off"
+                       required>
+                <button type="submit" id="start-game">Start Game</button>
+            </form>
+        </div>
+    </div>
+
+    <canvas id="canvas"></canvas>
+
+    <div id="leaderboard" class="leaderboard">
+        <h2>Top Players</h2>
+        <div id="leaderboard-content"></div>
+    </div>
+
+    <button id="mute">
+        <i class="fas fa-microphone"></i>
+    </button>
+
+    <div class="instructions">
+        <p>Press WASD To Move</p>
+        <p>Right Click To Shoot</p>
+    </div>
+
+    <script src="AgoraRTC_N-4.23.2.js"></script>
+    <script type= "module" src="/index.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+</body>
+</html>
