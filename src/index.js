@@ -192,6 +192,19 @@ function tick(delta) {
             // If collision detected
             if (distance <= PLAYER_HIT_RADIUS) {
                 const newSpawnPoint = getRandomSpawnPoint();
+                // Get killer's name
+                const killer = playerScores.get(shoot.playerId);
+                
+                // Send death screen only to the killed player
+                io.to(player.id).emit('player-death', {
+                    killerName: killer ? killer.name : 'Unknown Player'
+                });
+
+                // Send kill feed message to everyone
+                io.emit('kill-feed', {
+                    killerName: killer ? killer.name : 'Unknown Player',
+                    victimName: player.name
+                });
                 // Reset player position
                 player.x = newSpawnPoint.x;
                 player.y = newSpawnPoint.y;
@@ -289,7 +302,10 @@ async function main() {
             playerScores.set(socket.id, { name: trimmedName, kills: 0 });
             io.emit("leaderboard", getTop5Players());
 
+            io.emit('player-joined', trimmedName);
+
             socket.on("disconnect", () => {
+                io.emit('player-left', trimmedName);
                 playerScores.delete(socket.id);
                 io.emit("leaderboard", getTop5Players());
                 delete inputsMap[socket.id];

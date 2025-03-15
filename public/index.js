@@ -110,6 +110,49 @@ window.addEventListener('load', () => {
     playerNameInput.focus();
 });
 
+// Add these variables at the top with your other constants
+const deathScreen = document.getElementById('death-screen');
+const killerNameElement = document.getElementById('killer-name');
+const respawnCountdown = document.getElementById('respawn-countdown');
+let respawnTimer = null;
+
+// Add this function to show death screen
+function showDeathScreen(killerName) {
+    deathScreen.classList.remove('hidden');
+    killerNameElement.textContent = killerName;
+    let timeLeft = 5;
+    
+    respawnCountdown.textContent = timeLeft;
+    
+    respawnTimer = setInterval(() => {
+        timeLeft--;
+        respawnCountdown.textContent = timeLeft;
+        
+        if (timeLeft <= 0) {
+            clearInterval(respawnTimer);
+            deathScreen.classList.add('hidden');
+        }
+    }, 1000);
+}
+
+// Add at the top with other constants
+const MAX_MESSAGES = 5;
+const messageFeed = document.getElementById('message-feed');
+
+function addMessage(message, type) {
+    const messageElement = document.createElement('div');
+    messageElement.className = `message ${type}`;
+    messageElement.textContent = message;
+    
+    messageFeed.appendChild(messageElement);
+
+    // Remove old messages if there are too many
+    while (messageFeed.children.length > MAX_MESSAGES) {
+        messageFeed.removeChild(messageFeed.firstChild);
+    }
+
+}
+
 
 socket.on("connect", () => {
     console.log("connected");
@@ -139,6 +182,23 @@ socket.on("leaderboard", (topPlayers) => {
             </div>
         `)
         .join('');
+});
+
+socket.on('player-death', ({killerName}) => {
+    showDeathScreen(killerName);
+});
+
+// Add these socket listeners
+socket.on('player-joined', (playerName) => {
+    addMessage(`${playerName} joined the game`, 'join');
+});
+
+socket.on('player-left', (playerName) => {
+    addMessage(`${playerName} left the game`, 'leave');
+});
+
+socket.on('kill-feed', ({killerName, victimName}) => {
+    addMessage(`${killerName} killed ${victimName}`, 'kill');
 });
 
 const muteButton = document.getElementById('mute');
@@ -301,28 +361,28 @@ let particles = [];
 function drawGlowingOrb(canvas, x, y) {
     let gradient = canvas.createRadialGradient(x, y, 3, x, y, 10);
     gradient.addColorStop(0, "rgba(255, 255, 255, 1)"); // Bright white core
-    gradient.addColorStop(0.4, "rgba(0, 255, 255, 1)"); // Cyan glow
-    gradient.addColorStop(0.8, "rgba(138, 43, 226, 0.6)"); // Purple outer edge
+    gradient.addColorStop(0.5, "rgb(227, 111, 38)"); // Cyan glow
+    gradient.addColorStop(0.8, "rgb(238, 177, 45)"); // Purple outer edge
     gradient.addColorStop(1, "rgba(0, 0, 0, 0)"); // Fades out
 
     canvas.shadowBlur = 15;
-    canvas.shadowColor = "rgba(0, 255, 255, 0.8)"; // Soft cyan glow
+    canvas.shadowColor = "rgb(255, 234, 0)"; // Soft cyan glow
     canvas.fillStyle = gradient;
     canvas.beginPath();
-    canvas.arc(x, y, 10, 0, 2 * Math.PI);
+    canvas.arc(x, y, 12, 0, 2 * Math.PI);
     canvas.fill();
     canvas.shadowBlur = 0;
 }
 
 // Function to create small particles for the trail
 function createParticles(x, y) {
-    for (let i = 0; i < 3; i++) { // Small number of particles for subtle effect
+    for (let i = 0; i < 4; i++) { // Small number of particles for subtle effect
         particles.push({
             x: x + (Math.random() - 0.5) * 6, 
             y: y + (Math.random() - 0.5) * 6,
             size: Math.random() * 2 + 1, 
             alpha: 1, 
-            color: "rgba(173, 216, 230, 1)", // Light blue glow
+            color: "rgb(239, 227, 104)", // Light blue glow
             life: Math.random() * 10 + 5, 
             speedX: (Math.random() - 0.5) * 1,
             speedY: (Math.random() - 0.5) * 1
@@ -348,7 +408,7 @@ function updateParticles() {
 function drawParticles(canvas) {
     for (const p of particles) {
         canvas.shadowBlur = 6;
-        canvas.shadowColor = "rgba(173, 216, 230, 1)"; 
+        canvas.shadowColor = "rgb(239, 227, 104)"; 
         canvas.fillStyle = p.color.replace("1)", `${p.alpha})`);
         canvas.beginPath();
         canvas.arc(p.x, p.y, p.size, 0, 2 * Math.PI);

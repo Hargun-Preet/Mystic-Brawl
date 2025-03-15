@@ -47,6 +47,19 @@
         <p>Left Click To Shoot</p>
     </div>
 
+    <!-- Add this before the closing body tag -->
+    <div id="death-screen" class="death-screen hidden">
+        <div class="death-message">
+            <h2>YOU WERE KILLED BY</h2>
+            <p id="killer-name">Player Name</p>
+            <p class="respawn-timer">RESPAWNING IN <span id="respawn-countdown">5</span></p>
+        </div>
+    </div>
+
+    <!-- Add this before the closing body tag -->
+    <div id="message-feed" class="message-feed">
+    </div>
+
     <script src="AgoraRTC_N-4.23.2.js"></script>
     <script type= "module" src="/index.js"></script>
     <script src="/socket.io/socket.io.js"></script>
