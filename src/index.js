@@ -318,6 +318,10 @@ async function main() {
     });
     
     app.use(express.static("public"));
+
+    app.get('/health', (req, res) => {
+        res.status(200).send('OK');
+    });
     
     httpServer.listen(PORT, () => {
         console.log(`Server is running on port ${PORT}`);
