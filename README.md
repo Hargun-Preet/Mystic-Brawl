@@ -6,15 +6,16 @@
 
 ## ✨ Features
 
-- 🧑‍🤝‍🧑 **Real-Time Multiplayer Combat** — Battle with your friends or players worldwide in fast-paced, skill-based matches.
+- 🧑‍🤝‍🧑 **Real-Time Multiplayer Combat** — Battle with your friends or players worldwide in fast-paced matches.
 - 🎙️ **Voice Chat (Agora.io)** — Communicate with teammates or taunt opponents in real-time voice chat powered by Agora.io.
-- 🧭 **Custom Designed Maps** — Fight across immersive arenas with obstacles, platforms, and hidden paths.
+- 🧭 **Custom Designed Maps** — Fight across immersive arenas with obstacles, platforms, and hidden paths with collision detection.
 - 🎮 **Smooth Player Movement & Animations** — Responsive controls with fluid movement and shooting animations.
 - 💥 **Projectile & Collision System** — Shoot spells, and feel every hit with accurate collision detection.
 - 💀 **Respawn System** — Get back into the action quickly after being defeated, keeping matches exciting and continuous.
+- 🏷️ **Custom Player Names** — Choose your player name and have it displayed prominently above your character during matches.
 - 🚧 **Out-of-Bounds Mechanism** — Fall or leave the map and you’ll instantly respawn to keep the fight going without delay.
 - 🎵 **Dynamic Music & Sound Effects** — Immerse yourself with action-packed soundscapes and audio cues.
-- 🏆 **Scoreboards & Match Stats** — Track kills from the Leaderboard or from In-Game Messages.
+- 🏆 **Scoreboards & Match Stats** — Track kills from the Leaderboard along with from In-Game Messages.
 - 🌐 **Cross-Platform Ready** — Play seamlessly on desktop or browser without downloads.
 
 ---
@@ -54,6 +55,7 @@ Your game server will run at http://localhost:3000.
 
 - Right Click — Shoot in a direction
 - Voice Chat — Enable/disable voice chat using the on-screen button
+- Player Name — Set your player name before entering a match (visible to all players)
 
 ---
 
