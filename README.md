@@ -43,12 +43,12 @@ npm install
 ```
 npm start
 ```
-Your game server will run at http://localhost:4000.
+Your game server will run at http://localhost:3000.
 
 ---
 
 ## 🕹️ Controls
-- Arrow Keys/WASD — Move your character
+- WASD — Move your character
 
 - Right Click — Shoot in a direction
 
