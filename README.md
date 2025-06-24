@@ -7,6 +7,7 @@
 ## ✨ Features
 
 - 🧑‍🤝‍🧑 **Real-Time Multiplayer Combat** — Battle with your friends or players worldwide in fast-paced, skill-based matches.
+- 🎙️ **Voice Chat (Agora.io)** — Communicate with teammates or taunt opponents in real-time voice chat powered by Agora.io.
 - 🧭 **Custom Designed Maps** — Fight across immersive arenas with obstacles, platforms, and hidden paths.
 - 🎮 **Smooth Player Movement & Animations** — Responsive controls with fluid movement and shooting animations.
 - 💥 **Projectile & Collision System** — Shoot spells, and feel every hit with accurate collision detection.
@@ -24,6 +25,7 @@
 |------------|--------------------------------------------|
 | Frontend   | JavaScript, HTML5 Canvas, CSS             |
 | Backend    | Node.js, Socket.io                        |
+| Voice Chat | Agora.io                                  |
 | Assets     | Custom Sprites, Tilemaps, SFX/Music       |
 | Deployment | Railway      |
 
@@ -51,6 +53,7 @@ Your game server will run at http://localhost:3000.
 - WASD — Move your character
 
 - Right Click — Shoot in a direction
+- Voice Chat — Enable/disable voice chat using the on-screen button
 
 ---
 
